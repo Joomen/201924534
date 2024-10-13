@@ -1,11 +1,10 @@
-package main
+package chaincode
 
 import (
-    "encoding/json"
-    "strconv"
-    "strings"
+	"encoding/json"
+	"fmt"
 
-    "github.com/hyperledger/fabric-contract-api-go/contractapi"
+	"github.com/hyperledger/fabric-contract-api-go/contractapi"
 )
 
 // Asset 구조체 정의
@@ -123,15 +122,4 @@ func (s *SmartContract) GetAllAssets(ctx contractapi.TransactionContextInterface
         assets = append(assets, asset)
     }
     return assets, nil
-}
-
-// 메인 함수
-func main() {
-    chaincode, err := contractapi.NewChaincode(new(SmartContract))
-    if err != nil {
-        panic(err)
-    }
-    if err := chaincode.Start(); err != nil {
-        panic(err)
-    }
 }
